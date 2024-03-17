@@ -16,7 +16,7 @@ import {
 import MovieItem from '../MovieItem/MovieItem';
 import { styles } from './MovieList.styles'
 import { Fontisto, AntDesign } from '@expo/vector-icons';
-import { getGenreData, getMovieData } from '../../utilities/App.utilities';
+import { getMovieData } from '../../utilities/App.utilities';
 import { useSelector, useDispatch } from 'react-redux'
 import { setMovieData } from '../../Redux/Action';
 import MovieTypes from '../../constants/MovieTypes';
@@ -46,14 +46,8 @@ const MovieList = memo(function MovieList({ navigation }) {
       setPage(prevPage => prevPage + 1);
     }
   }
-  const fetchGenreData = async () => {
-    const response = await getGenreData()
-    setGenreData(response.genres)
-  }
   useEffect(() => {
-    fetchMovieData()
-    // fetchGenreData()
-  }, [genre])
+    fetchMovieData()  }, [genre])
   const handleLoadMore = () => {
     if (!loading && hasMore) {
       fetchMovieData();
